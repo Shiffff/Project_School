@@ -1,10 +1,9 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { accountService } from "../services/account_service";
 
 const AuthGuardP = ({ children }) => {
-  let logged = false;
-
-  if (!logged) {
+  if (!accountService.isLogged()) {
     return <Navigate to="/login" />;
   }
 

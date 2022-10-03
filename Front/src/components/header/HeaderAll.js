@@ -7,7 +7,7 @@ const HeaderAll = () => {
 
   const logout = () => {
     accountService.logout();
-    navigate("/auth/login");
+    navigate("/login");
   };
 
   return (
