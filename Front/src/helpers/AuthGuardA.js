@@ -1,11 +1,12 @@
-import React from "react";
+import { useSelector } from "react-redux";
+
 import { Navigate } from "react-router-dom";
 
 const AuthGuardA = ({ children }) => {
-  let logged = true;
+  const userData = useSelector((state) => state.user.user);
 
-  if (!logged) {
-    return <Navigate to="/login" />;
+  if (!userData.isAdmin) {
+    return <Navigate to="/" />;
   }
 
   return children;
