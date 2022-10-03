@@ -6,16 +6,27 @@ import AdminRouter from "./pages/Admin/AdminRouter";
 import AuthGuardA from "./helpers/AuthGuardA";
 import AuthGuardP from "./helpers/AuthGuardP";
 import { userService } from "./services/user.service";
+import { useDispatch } from "react-redux";
+import { setUsersData } from "./feature/users.slice";
+import { setUserData } from "./feature/user.slice";
 
 const App = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     userService
       .getAllUsers()
       .then((res) => {
-        console.log(res.data);
+        dispatch(setUsersData(res.data));
       })
       .catch((err) => console.log(err));
-  }, []);
+    userService
+      .getUser()
+      .then((res) => {
+        dispatch(setUserData(res.data));
+      })
+      .catch((err) => console.log(err));
+  }, [dispatch]);
 
   return (
     <BrowserRouter>

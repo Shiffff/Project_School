@@ -53,70 +53,18 @@ exports.login = (req, res, next) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-/************************************************************ */
-
 exports.getOneUser = (req, res, next) => {
-  //get une seul sauce éxistantes
   User.findOne({ _id: req.auth.userId })
-    .select("-password") // find dans la base de données le schema qui correspond a l'id qui ce trouve dans la requete
+    .select("-password")
     .then((User) => {
       res.status(200).json(User);
-    }) // renvoie en format json la reponse (all schema) qui sera traduite côté front
+    })
     .catch((error) => res.status(400).json({ error }));
-};
-
-exports.updateUser = (req, res, next) => {
-  if (req.auth.userId === req.params.id) {
-    const userObject = req.file
-      ? {
-          ...req.body.user,
-          imageUrl: `${req.protocol}://${req.get("host")}/images/${
-            req.file.filename
-          }`,
-        }
-      : { ...req.body };
-
-    User.updateOne(
-      { _id: req.params.id },
-      { ...userObject, _id: req.params.id }
-    )
-      .then(() => {
-        res.status(200).json({ message: "Informations utilisateur modifiées" });
-      })
-      .catch((err) => res.status(404).json({ err }));
-  } else {
-    return res.status(403).json("Vous n'êtes pas authorisé");
-  }
 };
 
 exports.getAllUser = (req, res, next) => {
-  User.find()
+  User.find({ isAdmin: "false" })
     .select("-password")
     .then((users) => res.status(200).json(users))
     .catch((error) => res.status(400).json({ error }));
-};
-
-exports.deleteUser = (req, res, next) => {
-  if (req.auth.userId === req.params.id) {
-    User.findOne({ _id: req.params.id }).then((user) => {
-      if (user.imageUrl) {
-        const filename = user.imageUrl.split("/images/")[1];
-        if (filename === "user_default.jpg") {
-          User.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: "User supprimé !" }))
-            .catch((error) => res.status(400).json({ error }));
-        } else {
-          const filename = user.imageUrl.split("/images/")[1];
-          fs.unlink(`images/${filename}`, () => {
-            // Supprime le post sélectionné
-            User.deleteOne({ _id: req.params.id })
-              .then(() => res.status(200).json({ message: "User supprimé !" }))
-              .catch((error) => res.status(400).json({ error }));
-          });
-        }
-      }
-    });
-  } else {
-    return res.status(403).json("Vous n'êtes pas authorisé");
-  }
 };
