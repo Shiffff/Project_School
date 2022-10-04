@@ -8,22 +8,12 @@ const Header = () => {
         <ul>
           <li>
             <NavLink
-              to="/admin/addStudent"
+              to="/admin/Student"
               className={({ isActive }) =>
                 isActive ? "activeLinkHome" : undefined
               }
             >
-              AddStudent
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/admin/listStudent"
-              className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
-              }
-            >
-              ListStudent
+              Student
             </NavLink>
           </li>
         </ul>

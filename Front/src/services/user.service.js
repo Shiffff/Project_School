@@ -12,8 +12,13 @@ let createUser = (user) => {
   return Axios.post("/user/signup", user);
 };
 
+let deleteUser = (user) => {
+  return Axios.delete(`/user/${user}`);
+};
+
 export const userService = {
   getAllUsers,
   getUser,
   createUser,
+  deleteUser,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import AHeader from "../../components/admin/AHeader";
+import AHeader from "../../components/header/admin/AHeader";
 import HeaderAll from "../../components/header/HeaderAll";
 
 const ALayout = () => {

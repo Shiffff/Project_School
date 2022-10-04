@@ -3,7 +3,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 exports.signup = (req, res, next) => {
-  console.log(req.body);
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -12,6 +11,7 @@ exports.signup = (req, res, next) => {
         password: hash,
         name: req.body.name,
         firstName: req.body.firstName,
+        class: req.body.class,
       });
       user
         .save()
@@ -66,5 +66,11 @@ exports.getAllUser = (req, res, next) => {
   User.find({ isAdmin: "false" })
     .select("-password")
     .then((users) => res.status(200).json(users))
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.deleteUser = (req, res, next) => {
+  User.deleteOne({ userName: req.params.userName })
+    .then(() => res.status(200).json({ message: "User supprimé !" }))
     .catch((error) => res.status(400).json({ error }));
 };

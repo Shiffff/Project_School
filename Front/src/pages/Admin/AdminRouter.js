@@ -3,8 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import ALayout from "./ALayout";
 import Dashboard from "./Dashboard";
-import AddStudent from "./AdminPage/AddStudent";
-import ListStudent from "./AdminPage/ListStudent";
+import Student from "./AdminPage/Student";
 import Error from "../../utils/Error";
 
 const AdminRouter = () => {
@@ -14,8 +13,7 @@ const AdminRouter = () => {
         <Route element={<ALayout />}>
           <Route index element={<Dashboard />} />
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/addStudent" element={<AddStudent />} />
-          <Route path="/listStudent" element={<ListStudent />} />
+          <Route path="/Student" element={<Student />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
