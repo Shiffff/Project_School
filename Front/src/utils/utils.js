@@ -9,10 +9,8 @@ export const isEmpty = (value) => {
 
 export const dateParser = (num) => {
   let options = {
-    weekday: "long",
     year: "numeric",
     month: "short",
-    day: "numeric",
   };
 
   let timestamp = Date.parse(num);

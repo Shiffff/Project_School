@@ -21,8 +21,13 @@ const NewStudent = () => {
 
   const handleStudentSubmit = (e) => {
     e.preventDefault();
-    console.log(student);
-    userService.createUser(student);
+    userService
+      .createUser(student)
+      .then((res) => {
+        document.querySelector(".errorMessageFetch").innerHTML =
+          "Etudiant crée";
+      })
+      .catch((err) => console.log(err));
     dispatch(setAddStudent(student));
   };
 
