@@ -1,0 +1,10 @@
+@keyframes headshake {
+  25% {
+    // entièrement à droite
+    transform: translateX(6%);
+  }
+  75% {
+    // entièrement à gauche
+    transform: translateX(6% * -1);
+  }
+}

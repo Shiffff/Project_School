@@ -16,6 +16,7 @@ export default function SignUp() {
 
   const handleCheckSubmit = (e) => {
     e.preventDefault();
+    document.querySelector(".submitLogin").classList.remove("animationLogin");
     accountService
       .login(user)
       .then((res) => {
@@ -26,47 +27,55 @@ export default function SignUp() {
       .catch((err) => {
         if (err.response.status === 401) {
           document.querySelector(".errorMessageFetch").innerHTML =
-            "Paires identifiant mot de passe invalide";
+            "Identifiant/mot de passe invalide";
+          document
+            .querySelector(".submitLogin")
+            .classList.add("animationLogin");
         } else {
           document.querySelector(".errorMessageFetch").innerHTML =
-            "Site en maintenance";
+            "Maintenance du site";
+          document
+            .querySelector(".submitLogin")
+            .classList.add("animationLogin");
         }
       });
   };
 
   return (
-    <div className="CenterForm">
-      <form onSubmit={(e) => handleCheckSubmit(e)}>
-        <label htmlFor="userName">Identifiant *</label>
-        <br />
-        <input
-          placeholder="jean.dupont"
-          type="text"
-          name="userName"
-          id="userName"
-          value={user.userName}
-          onChange={(e) => handleChange(e)}
-        />
-        <br />
-        <div className="errorMessageEmail errormsg"></div>
-        <br />
-        <label htmlFor="text">Mot de passe *</label>
-        <br />
-        <input
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="off"
-          value={user.password}
-          onChange={(e) => handleChange(e)}
-        />
-        <br />
-        <div className="errorMessagePassword errormsg"></div>
-        <br />
-        <input type="submit" className="submitLogin" value="Se connecter" />
-        <br />
+    <div className="bodyForm">
+      <div className="CenterForm">
+        <form onSubmit={(e) => handleCheckSubmit(e)}>
+          <h1>Connexion</h1>
+          <label htmlFor="userName">Identifiant</label>
+          <br />
+          <input
+            type="text"
+            name="userName"
+            id="userName"
+            value={user.userName}
+            onChange={(e) => handleChange(e)}
+          />
+          <br />
+          <div className="errorMessageEmail errormsg"></div>
+          <br />
+          <label htmlFor="text">Mot de passe</label>
+          <br />
+          <input
+            type="password"
+            name="password"
+            id="password"
+            autoComplete="off"
+            value={user.password}
+            onChange={(e) => handleChange(e)}
+          />
+          <br />
+          <br />
+          <div className="buttonContainer">
+            <input type="submit" className="submitLogin" value="Se connecter" />
+          </div>
+        </form>
         <div className="errorMessageFetch errormsg"></div>
-      </form>
+      </div>
     </div>
   );
 }
