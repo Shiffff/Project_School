@@ -26,7 +26,7 @@ const App = () => {
         dispatch(setUserData(res.data));
       })
       .catch((err) => console.log(err));
-  }, [dispatch]);
+  }, []);
 
   return (
     <BrowserRouter>
@@ -49,7 +49,7 @@ const App = () => {
           }
         />
 
-        <Route path="/login" element={<Auth />} />
+        <Route path="/login/*" element={<Auth />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,48 @@
+@import "../breakpoint.scss";
+
+.headerAll {
+  background-color: lightgray;
+  height: 80px;
+  position: relative;
+
+  .logoSite {
+    width: 70px;
+    height: 70px;
+  }
+  .imglogoSite {
+    width: 70px;
+    height: 70px;
+    border-radius: 30px;
+  }
+  .logoContainer {
+    width: 30px;
+    height: 30px;
+  }
+  .imglogoContainer {
+    width: 30px;
+    height: 30px;
+  }
+  .Home {
+    position: absolute;
+    top: 22px;
+    right: 40px;
+  }
+  .logout {
+    position: absolute;
+    top: 12px;
+    right: 0;
+  }
+  .admin {
+    position: absolute;
+    top: 12px;
+    right: 40px;
+  }
+  .nameOfPage {
+    display: flex;
+    justify-content: center;
+    margin-top: -40px;
+    @include sm {
+      display: none;
+    }
+  }
+}

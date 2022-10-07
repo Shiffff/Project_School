@@ -1,8 +1,50 @@
-.header li{
-    display: inline-block;
-    margin-right: 20px;
-    .activeLinkHome{
+@import "../color.scss";
+
+.header li {
+  display: inline-block;
+  margin-right: 20px;
+  width: 80px;
+  height: 40px;
+  border-radius: 20px;
+
+  .activeLinkHome {
     color: red;
-        .selected{
-    color: rgb(255, 0, 0);
-}}}
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  .iconeClass {
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+.iconeClass6 {
+  background-color: $color6;
+}
+.iconeClass5 {
+  background-color: $color5;
+}
+.iconeClass4 {
+  background-color: $color4;
+}
+.iconeClass3 {
+  background-color: $color3;
+}
+.iconeClass2 {
+  background-color: $color2;
+}
+.iconeClass1es {
+  background-color: $color1es;
+}
+.iconeClass1spe {
+  background-color: $color1spe;
+}
+.iconeClasstspe {
+  background-color: $colorTes;
+}
+.iconeClasstes {
+  background-color: $colorTspe;
+}

@@ -24,16 +24,34 @@ const HeaderAll = () => {
   };
 
   return (
-    <header className="header">
+    <header className="headerAll">
       <nav>
         <ul>
-          <li>LOGO</li>
-          <li>
-            <NavLink to="/">Accueil</NavLink>
+          <li className="logoSite">
+            <img className="imglogoSite" src="../logo_book.jpg"></img>
           </li>
-          {IsAdmin && <NavLink to="/admin/dashboard">Admin_page</NavLink>}
+          <h2 className="nameOfPage">Accueil</h2>
+          {IsAdmin && (
+            <NavLink to="/admin/dashboard" className="logoContainer admin">
+              <img
+                className="imglogoContainer admin"
+                src="../logo_admin.png"
+              ></img>
+            </NavLink>
+          )}
           <li>
-            <button onClick={logout}>Logout</button>
+            <NavLink className="logoContainer Home" to="/">
+              <img
+                className="imglogoContainer home"
+                src="../logo_home.png"
+              ></img>
+            </NavLink>
+          </li>
+          <li onClick={logout} className="logoContainer logout">
+            <img
+              className="imglogoContainer logout"
+              src="../logo_logout.png"
+            ></img>
           </li>
         </ul>
       </nav>

@@ -1,49 +1,5 @@
-.CenterForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 60px 40px 60px;
-  background-color: lightseagreen;
-  border-radius: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  h1 {
-    color: white;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  input[type="text"],
-  input[type="password"] {
-    background-color: lightseagreen;
-    outline: none;
-    border: none;
-    border-bottom: 1px solid black;
-  }
-  input[type="text"],
-  input[type="password"]:focus {
-    outline: none;
-    border-bottom: 1px solid black;
-  }
-  .buttonContainer {
-    display: flex;
-    justify-content: center;
-  }
-  .submitLogin {
-    border: none;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    margin-bottom: 10px;
-  }
-  .animationLogin {
-    animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
-  }
-  .form {
-    color: black;
-  }
-  .errorMessageFetch {
-    font-size: 13px;
-  }
-}
+@import "../breakpoint.scss";
+
 .bodyForm {
   display: flex;
   align-content: center;
@@ -56,4 +12,75 @@
   top: 0;
   left: 0;
   background-color: lightcyan;
+}
+.CenterForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 60px 40px 60px;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  @include md {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 224, 224);
+  }
+  h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  input[type="text"],
+  input[type="password"] {
+    background-color: lightseagreen;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    @include md {
+      background-color: rgb(255, 224, 224);
+    }
+  }
+
+  input[type="text"],
+  input[type="password"]:focus {
+    outline: none;
+    border-bottom: 1px solid black;
+  }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .submitLogin {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    &:hover {
+      transform: scale(1.03);
+      transition: all 5ms linear;
+      cursor: pointer;
+    }
+  }
+  .animationLogin {
+    animation: headshake 100ms cubic-bezier(0.4, 0.1, 0.6, 0.9) 2;
+  }
+  .form {
+    color: black;
+  }
+  .errorMessageFetch {
+    font-size: 13px;
+    font-weight: 300;
+  }
 }
