@@ -15,7 +15,7 @@ const AllStudent = () => {
   };
 
   return (
-    <div>
+    <div className="arrayOfStudent">
       <table>
         <thead>
           <tr>

@@ -1,24 +1,46 @@
 @import "../color.scss";
+@import "../breakpoint.scss";
+
+.header ul {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+
+  @include lg {
+    display: grid;
+    grid-template-columns: 25% 25% 25%;
+    gap: 10px;
+  }
+  @include sm {
+    grid-template-columns: 45% 45%;
+  }
+}
 
 .header li {
-  display: inline-block;
-  margin-right: 20px;
-  width: 80px;
+  margin-right: 10px;
+  width: 100px;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 10px;
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .activeLinkHome {
-    color: red;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    align-items: center;
+    font-weight: 500;
+    background-color: white;
+    width: 100px;
+    height: 40px;
   }
   .iconeClass {
-    border-radius: 20px;
     display: flex;
     justify-content: center;
-    margin-top: 10px;
+    color: white;
+    font-weight: 500;
   }
 }
 .iconeClass6 {
@@ -47,4 +69,44 @@
 }
 .iconeClasstes {
   background-color: $colorTspe;
+}
+.isActiveClass6 {
+  color: $color6;
+  border: 3px solid $color6;
+}
+.isActiveClass5 {
+  color: $color5;
+  border: 3px solid $color5;
+}
+.isActiveClass4 {
+  color: $color4;
+  border: 3px solid $color4;
+}
+.isActiveClass3 {
+  color: $color3;
+  border: 3px solid $color3;
+}
+.isActiveClass2 {
+  color: $color2;
+  border: 3px solid $color2;
+}
+.isActiveClass1es {
+  color: $color1es;
+  border: 3px solid $color1es;
+}
+.isActiveClass1spe {
+  color: $color1spe;
+  border: 3px solid $color1spe;
+}
+.isActiveClasstes {
+  color: $colorTspe;
+  border: 3px solid $colorTspe;
+}
+.isActiveClasstspe {
+  color: $colorTes;
+  border: 3px solid $colorTes;
+}
+.isActiveClassAll {
+  color: $colorTes;
+  border: 3px solid $colorTes;
 }

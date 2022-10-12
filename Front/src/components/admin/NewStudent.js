@@ -34,10 +34,9 @@ const NewStudent = () => {
   return (
     <div className="studentForm">
       <form onSubmit={(e) => handleStudentSubmit(e)}>
-        <label htmlFor="name">Nom *</label>
+        <label htmlFor="name">Nom</label>
         <br />
         <input
-          placeholder="Jean"
           type="text"
           name="name"
           id="name"
@@ -45,10 +44,9 @@ const NewStudent = () => {
           onChange={(e) => handleChange(e)}
         />
         <br />
-        <label htmlFor="firstName">Prénom *</label>
+        <label htmlFor="firstName">Prénom</label>
         <br />
         <input
-          placeholder="Dupont"
           type="text"
           name="firstName"
           id="firstName"
@@ -56,10 +54,9 @@ const NewStudent = () => {
           onChange={(e) => handleChange(e)}
         />
         <br />
-        <label htmlFor="email">Idenfiant *</label>
+        <label htmlFor="email">Idenfiant</label>
         <br />
         <input
-          placeholder="jean.dupont"
           type="text"
           name="userName"
           id="userName"
@@ -67,10 +64,9 @@ const NewStudent = () => {
           onChange={(e) => handleChange(e)}
         />
         <br />
-        <label htmlFor="text">Mot de passe *</label>
+        <label htmlFor="text">Mot de passe</label>
         <br />
         <input
-          placeholder=""
           type="password"
           name="password"
           autoComplete="off"
@@ -80,13 +76,15 @@ const NewStudent = () => {
         />
         <br />
         <label htmlFor="class">Classe</label>
+        <br />
+
         <select
           name="class"
           id="class"
           value={student.class}
           onChange={(e) => handleChange(e)}
         >
-          <option value="">--Please choose an option--</option>
+          <option value="">--Choisissez la classe--</option>
           <option value="6°">6°</option>
           <option value="5°">5°</option>
           <option value="4°">4°</option>
@@ -97,8 +95,10 @@ const NewStudent = () => {
           <option value="T°es">T°es</option>
           <option value="T°spe">T°spe</option>
         </select>
+        <br />
+        <br />
 
-        <input type="submit" className="submitLogin" value="S'inscrire" />
+        <input type="submit" className="ww" value="Valider" />
         <br />
         <div className="errorMessageFetch"></div>
       </form>

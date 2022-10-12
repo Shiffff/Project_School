@@ -154,79 +154,110 @@ const ListStudent = () => {
 
   return (
     <div className="ListStudent_container">
-      <div onClick={() => setshowNewStudent(!showNewStudent)}>New student?</div>
-      {showNewStudent && <NewStudent />}
-      <div className="arrayStudent">
+      <div className="popupNewStudent">
+        <div
+          className="popupNewStudentButton"
+          onClick={() => setshowNewStudent(!showNewStudent)}
+        >
+          + Nouvel évève
+        </div>
+        {showNewStudent && <NewStudent />}
+      </div>
+      <div className="header">
         <ul>
           <li
             onClick={handleModals}
             id="AllStudent"
-            className={AllStudentModal ? "active-btn" : null}
+            className={
+              AllStudentModal
+                ? "activeLinkHome isActiveClasstes"
+                : "iconeClasstes"
+            }
           >
-            AllStudent?
+            Tableau
           </li>
           <li
             onClick={handleModals}
             id="sixieme"
-            className={sixieme ? "active-btn" : null}
+            className={
+              sixieme ? "activeLinkHome isActiveClass6" : "iconeClass6"
+            }
           >
-            Sixieme?
+            6ème
           </li>
           <li
             onClick={handleModals}
             id="cinquieme"
-            className={cinquieme ? "active-btn" : null}
+            className={
+              cinquieme ? "activeLinkHome isActiveClass5" : "iconeClass5"
+            }
           >
-            cinquieme?
+            5ème
           </li>
           <li
             onClick={handleModals}
             id="quatrieme"
-            className={quatrieme ? "active-btn" : null}
+            className={
+              quatrieme ? "activeLinkHome isActiveClass4" : "iconeClass4"
+            }
           >
-            quatrieme?
+            4ème
           </li>
           <li
             onClick={handleModals}
             id="troisieme"
-            className={troisieme ? "active-btn" : null}
+            className={
+              troisieme ? "activeLinkHome isActiveClass3" : "iconeClass3"
+            }
           >
-            troisieme?
+            3ème
           </li>
           <li
             onClick={handleModals}
             id="seconde"
-            className={seconde ? "active-btn" : null}
+            className={
+              seconde ? "activeLinkHome isActiveClass2" : "iconeClass2"
+            }
           >
-            seconde?
+            2nd
           </li>
           <li
             onClick={handleModals}
             id="premierees"
-            className={premierees ? "active-btn" : null}
+            className={
+              premierees ? "activeLinkHome isActiveClass1es" : "iconeClass1es"
+            }
           >
-            premierees?
+            1ère ES
           </li>
           <li
             onClick={handleModals}
             id="premierespe"
-            className={premierespe ? "active-btn" : null}
+            className={
+              premierespe
+                ? "activeLinkHome isActiveClass1spe"
+                : "iconeClass1spe"
+            }
           >
-            premierespe?
+            1ère SPE
           </li>{" "}
           <li
             onClick={handleModals}
             id="tes"
-            className={tes ? "active-btn" : null}
+            className={
+              tes ? "activeLinkHome isActiveClasstes" : "iconeClasstes"
+            }
           >
-            tes?
+            Term ES
           </li>{" "}
           <li
             onClick={handleModals}
             id="tspe"
-            className={tspe ? "active-btn" : null}
+            className={
+              tspe ? "activeLinkHome isActiveClasstspe" : "iconeClasstspe"
+            }
           >
-            tspe?
+            Term SPE
           </li>
         </ul>
         {AllStudentModal && <AllStudent />}

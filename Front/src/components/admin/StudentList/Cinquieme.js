@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { dateParser } from "../../../utils/utils";
 import { userService } from "../../../services/user.service";
 import { deleteStudent } from "../../../feature/users.slice";
+import { isEmpty } from "../../../utils/utils";
 
 const Cinquieme = () => {
   const usersData = useSelector((state) => state.users.users);
@@ -17,7 +18,7 @@ const Cinquieme = () => {
     dispatch(deleteStudent(userName));
   };
   return (
-    <div>
+    <div className="arrayOfStudent">
       <table>
         <thead>
           <tr>
@@ -35,7 +36,10 @@ const Cinquieme = () => {
               <td>{user.firstName}</td>
               <td>{user.userName}</td>
               <td>{user.class}</td>
-              <td>{dateParser(user.createdAt)}</td>
+              <td>
+                {(!isEmpty(user.createdAt) && dateParser(user.createdAt)) ||
+                  (isEmpty(user.createdAt) && `a l'instant`)}
+              </td>
               <td onClick={() => deleteUser(user.userName)}>Suppr</td>
             </tr>
           ))}

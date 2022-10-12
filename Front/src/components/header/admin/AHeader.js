@@ -3,19 +3,22 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="header">
+    <header className="Aheader">
       <nav>
         <ul>
-          <li>
+          <li className="containerMenu Student">
             <NavLink
               to="/admin/Student"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkStudent" : "linkStudent"
               }
             >
-              Student
+              Elèves
             </NavLink>
           </li>
+          <li className="containerMenu test1"></li>
+          <li className="containerMenu test2"></li>
+          <li className="containerMenu test3"></li>
         </ul>
       </nav>
     </header>

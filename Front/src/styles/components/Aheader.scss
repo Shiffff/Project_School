@@ -1,0 +1,40 @@
+@import "../color.scss";
+@import "../breakpoint.scss";
+
+.containerMenu {
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+}
+
+.Aheader ul {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  @include sm {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+.linkStudent {
+  background-color: $color1es;
+  display: flex;
+  height: 150px;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 21px;
+}
+.test1 {
+  background-color: $color1spe;
+}
+.test2 {
+  background-color: $colorTspe;
+}
+.test3 {
+  background-color: $colorTes;
+}
+.containerMenu .Student {
+  display: flex;
+}

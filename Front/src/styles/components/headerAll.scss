@@ -40,7 +40,9 @@
   .nameOfPage {
     display: flex;
     justify-content: center;
-    margin-top: -40px;
+    margin-top: -46px;
+    color: white;
+    font-size: 35px;
     @include sm {
       display: none;
     }

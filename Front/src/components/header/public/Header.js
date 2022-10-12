@@ -6,104 +6,94 @@ const Header = () => {
     <header className="header">
       <nav>
         <ul>
-          <li>
-            <NavLink
-              to="/home"
-              className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
-              }
-            >
-              Accueil
-            </NavLink>
-          </li>
-          <li>
+          <li className="iconeClass6">
             <NavLink
               to="/sixieme"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass6" : "iconeClass"
               }
             >
-              Sixieme
+              6ème
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass5">
             <NavLink
               to="/cinquieme"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass5" : "iconeClass "
               }
             >
-              Cinquieme
+              5ème
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass4">
             <NavLink
               to="/quatrieme"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass4" : "iconeClass "
               }
             >
-              Quatrieme
+              4ème
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass3">
             <NavLink
               to="/troisieme"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass3" : "iconeClass "
               }
             >
-              Troisieme
+              3ème
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass2">
             <NavLink
               to="/seconde"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass2" : "iconeClass "
               }
             >
-              Seconde
+              2nd
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass1es">
             <NavLink
               to="/premiereES"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass1es" : "iconeClass "
               }
             >
-              PremiereES
+              1ère ES
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClass1spe ">
             <NavLink
               to="/premiereSPE"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClass1spe" : "iconeClass "
               }
             >
-              PremiereSPE
+              1ère SPE
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClasstes">
             <NavLink
               to="/tes"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClasstes" : "iconeClass "
               }
             >
-              Tes
+              Term ES
             </NavLink>
           </li>
-          <li>
+          <li className="iconeClasstspe">
             <NavLink
               to="/tspe"
               className={({ isActive }) =>
-                isActive ? "activeLinkHome" : undefined
+                isActive ? "activeLinkHome isActiveClasstspe" : "iconeClass"
               }
             >
-              Tspe
+              Term SPE
             </NavLink>
           </li>
         </ul>

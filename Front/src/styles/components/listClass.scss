@@ -1,0 +1,76 @@
+.popupNewStudent {
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+.arrayOfStudent {
+  display: flex;
+  justify-content: center;
+}
+.popupNewStudentButton {
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 14px 24px;
+  background: linear-gradient(
+    to right,
+    rgb(230, 30, 77) 0%,
+    rgb(227, 28, 95) 50%,
+    rgb(215, 4, 102) 100%
+  );
+  color: #fff;
+  margin-bottom: 25px;
+}
+
+.studentForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 60px 40px 60px;
+  background-color: lightseagreen;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  input[type="text"],
+  input[type="password"] {
+    background-color: lightseagreen;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+  .submitNewStudent {
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    &:hover {
+      transform: scale(1.03);
+      transition: all 5ms linear;
+      cursor: pointer;
+    }
+  }
+}
+
+.arrayOfStudent {
+  table {
+    margin-top: 50px;
+    background-color: lightcoral;
+    padding: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  td {
+    border: 1px solid black;
+
+    padding: 15px;
+  }
+  th {
+    border: 1px solid black;
+
+    padding: 10px;
+  }
+}
