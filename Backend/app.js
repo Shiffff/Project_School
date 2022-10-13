@@ -3,6 +3,7 @@ const app = express();
 var cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
+const contentRoutes = require("./routes/content");
 
 mongoose
   .connect(
@@ -15,5 +16,6 @@ mongoose
 app.use(express.json());
 app.use(cors());
 app.use("/api/user", userRoutes);
+app.use("/api/content", contentRoutes);
 
 module.exports = app;
