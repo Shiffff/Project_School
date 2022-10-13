@@ -1,7 +1,7 @@
 import React from "react";
 
 const DeleteCard = () => {
-  return <div>test</div>;
+  return <div>img suppr</div>;
 };
 
 export default DeleteCard;

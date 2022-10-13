@@ -15,11 +15,13 @@ exports.createtheme = (req, res, next) => {
 };
 
 exports.modifytheme = (req, res, next) => {
-  const theme = Content.findById(req.params._id);
+  console.log(req.body);
+  const theme = Content.findById(req.params.id);
   if (req.auth.isAdmin === true) {
     theme
       .updateOne({
-        $set: req.body,
+        themeTitle: req.body.themeTitle,
+        themedescription: req.body.themedescription,
       })
       .then(() => res.status(201).json({ message: "Theme modifié !" }))
       .catch((error) => res.status(400).json({ error }));
