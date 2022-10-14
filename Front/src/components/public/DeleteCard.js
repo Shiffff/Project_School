@@ -1,7 +1,30 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { contentService } from "../../services/content.service";
+import { deleteContent } from "../../feature/content.slice";
 
-const DeleteCard = () => {
-  return <div>img suppr</div>;
+const DeleteCard = (props) => {
+  const dispatch = useDispatch();
+
+  const deletetheme = () => {
+    contentService
+      .deleteTheme(props.id)
+      .then((res) => {
+        console.log(res.data);
+        dispatch(deleteContent(props.id));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <div
+      onClick={() => {
+        deletetheme();
+      }}
+    >
+      delete1
+    </div>
+  );
 };
 
 export default DeleteCard;

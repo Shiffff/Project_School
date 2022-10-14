@@ -22,7 +22,7 @@ exports.signup = (req, res, next) => {
 };
 
 exports.login = (req, res, next) => {
-  User.findOne({ loginName: req.body.loginName })
+  User.findOne({ userName: req.body.userName })
     .then((user) => {
       if (user === null) {
         res

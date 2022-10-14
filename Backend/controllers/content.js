@@ -6,6 +6,7 @@ exports.createtheme = (req, res, next) => {
       userThemeId: req.auth.userId,
       themeTitle: req.body.themeTitle,
       themedescription: req.body.themedescription,
+      class: req.body.class,
     });
     const theme = newTheme
       .save()
@@ -40,4 +41,66 @@ exports.getAllTheme = (req, res, next) => {
   Content.find()
     .then((content) => res.status(200).json(content))
     .catch((error) => res.status(400).json({ error }));
+};
+
+exports.createChapter = (req, res, next) => {
+  Content.updateOne(
+    { _id: req.params.id },
+    {
+      $push: {
+        chapter: {
+          userChapterId: req.body.userChapterId,
+          chapterTitle: req.body.chapterTitle,
+          chapterdescription: req.body.chapterdescription,
+        },
+      },
+    }
+  )
+    .then(() => res.status(200).json({ message: "Chapitre ajouté !" }))
+    .catch((error) => res.status(400).json({ error }));
+};
+
+exports.modifyChapter = (req, res, next) => {
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+
+    if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+    chapterOne.chapterTitle = req.body.chapterTitle;
+    chapterOne.chapterdescription = req.body.chapterTitle;
+
+    return data.save((err) => {
+      if (!err) return res.status(200).send(data);
+      return res.status(500).send(err);
+    });
+  });
+};
+
+exports.deleteChapter = (req, res) => {
+  Content.findByIdAndUpdate(req.params.id, {
+    $pull: {
+      chapter: {
+        _id: req.body.chapterId,
+      },
+    },
+  })
+    .then((data) => res.send(data))
+    .catch((err) => res.status(500).send({ message: err }));
+};
+
+exports.createLessons = (req, res, next) => {
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+
+    if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+    chapterOne.lessons = req.body;
+
+    return data.save((err) => {
+      if (!err) return res.status(200).send(data);
+      return res.status(500).send(err);
+    });
+  });
 };
