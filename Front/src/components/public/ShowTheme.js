@@ -5,6 +5,7 @@ import Card from "./CardTheme";
 
 const ShowTheme = (props) => {
   const contentData = useSelector((state) => state.content.content);
+
   const contentDataClass = contentData.filter(
     (contentone) => contentone.class === props.class
   );
