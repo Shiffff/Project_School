@@ -96,7 +96,51 @@ exports.createLessons = (req, res, next) => {
     );
 
     if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
-    chapterOne.lessons = req.body;
+    chapterOne.lessons.push({
+      userLessonId: req.body.userLessonId,
+      lessonTitle: req.body.lessonTitle,
+      lessondescription: req.body.lessondescription,
+      content: req.body.content,
+    });
+
+    return data.save((err) => {
+      if (!err) return res.status(200).send(data);
+      return res.status(500).send(err);
+    });
+  });
+};
+
+exports.modifyLessons = (req, res, next) => {
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+    const lessonOne = chapterOne.lessons.find((lesson) =>
+      lesson._id.equals(req.body.lessonId)
+    );
+
+    if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+    lessonOne.lessonTitle = req.body.lessonTitle;
+    lessonOne.lessondescription = req.body.lessondescription;
+    lessonOne.content = req.body.content;
+
+    return data.save((err) => {
+      if (!err) return res.status(200).send(data);
+      return res.status(500).send(err);
+    });
+  });
+};
+
+exports.deleteLessons = (req, res, next) => {
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+
+    if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+    chapterOne.lessons.pull({
+      _id: req.body.lessonId,
+    });
 
     return data.save((err) => {
       if (!err) return res.status(200).send(data);

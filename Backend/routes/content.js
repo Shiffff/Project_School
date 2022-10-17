@@ -13,7 +13,7 @@ router.put("/chapter/:id", contentCtrl.modifyChapter);
 router.put("/deletechapter/:id", contentCtrl.deleteChapter);
 
 router.post("/lessons/:id", contentCtrl.createLessons);
-//router.put("/lessons/:id", contentCtrl.modifyLessons);
-//router.put("/deletechapter/:id", contentCtrl.deleteChapter);
+router.put("/lessons/:id", contentCtrl.modifyLessons);
+router.put("/deletelessons/:id", contentCtrl.deleteLessons);
 
 module.exports = router;
