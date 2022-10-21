@@ -1,34 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DeleteCard from "./DeleteCard";
+import DeleteChapter from "./deleteChapter";
 import { contentService } from "../../services/content.service";
-import { putContentData } from "../../feature/content.slice";
-import ShowChapterCard from "./ShowChapterCard";
 
-const CardTheme = ({ theme }) => {
-  const userData = useSelector((state) => state.user.user);
-  const dispatch = useDispatch();
-  const [ShowChapter, setShowChapter] = useState(false);
-  const [IsAdmin, setIsAdmin] = useState(false);
+const CardChapter = ({ chapter, theme }) => {
   const [IsUpdated, setIsUpdated] = useState(false);
-  const [TextTitleUpdate, setTextTitleUpdate] = useState(theme.themeTitle);
+
+  const userData = useSelector((state) => state.user.user);
+  const [IsAdmin, setIsAdmin] = useState(false);
+  const [TextTitleUpdate, setTextTitleUpdate] = useState(chapter.chapterTitle);
   const [TextDescriptionUpdate, setTextDescriptionUpdate] = useState(
-    theme.themedescription
+    chapter.chapterdescription
   );
 
   const updateItem = async () => {
     if (TextTitleUpdate || TextDescriptionUpdate) {
       const newDescription = {
-        themeTitle: TextTitleUpdate,
-        themedescription: TextDescriptionUpdate,
+        chapterTitle: TextTitleUpdate,
+        chapterdescription: TextDescriptionUpdate,
       };
       contentService
-        .putTheme(theme._id, newDescription)
+        .putChapter(theme._id, newDescription)
         .then((res) => {
-          console.log(res.data);
-          dispatch(
-            putContentData([theme._id, TextTitleUpdate, TextDescriptionUpdate])
-          );
+          console.log(res);
         })
         .catch((err) => console.log(err));
     }
@@ -45,27 +39,24 @@ const CardTheme = ({ theme }) => {
 
   return (
     <div className="CardThemeContainer">
-      <div
-        className="themeContainer"
-        onClick={() => setShowChapter(!ShowChapter)}
-      >
+      <div className="themeContainer">
         <ul>
-          {IsUpdated === false && <p>{theme.themeTitle}</p>}
+          {IsUpdated === false && <p>{chapter.chapterTitle}</p>}
           {IsUpdated && (
             <div className="update-post">
               <textarea
-                defaultValue={theme.themeTitle}
+                defaultValue={chapter.chapterTitle}
                 onChange={(e) => setTextTitleUpdate(e.target.value)}
               />
               <div className="button-container"></div>
             </div>
           )}
 
-          {IsUpdated === false && <p>{theme.themedescription}</p>}
+          {IsUpdated === false && <p>{chapter.chapterdescription}</p>}
           {IsUpdated && (
             <div className="update-post">
               <textarea
-                defaultValue={theme.themedescription}
+                defaultValue={chapter.chapterdescription}
                 onChange={(e) => setTextDescriptionUpdate(e.target.value)}
               />
               <div className="button-container">
@@ -88,14 +79,11 @@ const CardTheme = ({ theme }) => {
               </div>
             </div>
           )}
-          {IsAdmin && <DeleteCard id={theme._id} />}
+          {IsAdmin && <DeleteChapter id={chapter._id} />}
         </ul>
-      </div>
-      <div className="chapterContainer">
-        {ShowChapter && <ShowChapterCard theme={theme} />}
       </div>
     </div>
   );
 };
 
-export default CardTheme;
+export default CardChapter;

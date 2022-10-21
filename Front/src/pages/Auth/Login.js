@@ -22,7 +22,7 @@ export default function SignUp() {
       .then((res) => {
         document.querySelector(".errorMessageFetch").innerHTML = "";
         accountService.saveToken(res.data.token);
-        navigate("/home");
+        window.location = "/home";
       })
       .catch((err) => {
         if (err.response.status === 401) {

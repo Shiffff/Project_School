@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { isEmpty } from "../../utils/utils";
-import { useSelector } from "react-redux";
-import Card from "./CardTheme";
+import { useSelector, useDispatch } from "react-redux";
+import CardTheme from "./CardTheme";
+import { contentService } from "../../services/content.service";
+import { setContentData } from "../../feature/content.slice";
 
 const ShowTheme = (props) => {
+  const dispatch = useDispatch();
   const contentData = useSelector((state) => state.content.content);
 
-  const contentDataClass = contentData.filter(
-    (contentone) => contentone.class === props.class
-  );
+  useEffect(() => {
+    contentService
+      .getTheme()
+      .then((res) => {
+        dispatch(setContentData(res.data));
+      })
+      .catch((err) => console.log(err));
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="ShowTheme">
       <ul>
         {!isEmpty(contentData[0]) &&
-          contentDataClass.map((theme) => {
-            return <Card theme={theme} key={theme.themeTitle} />;
+          contentData.map((theme) => {
+            if (theme.class !== props.class) return null;
+            return <CardTheme theme={theme} key={theme._id} />;
           })}
       </ul>
     </div>

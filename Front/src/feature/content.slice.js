@@ -30,9 +30,21 @@ export const contentSlice = createSlice({
         (contentone) => contentone._id !== payload
       );
     },
+    setAddChapter: (state, { payload }) => {
+      state.content = state.content.map((themeOne) => {
+        if (themeOne._id !== payload[0]) return null;
+
+        return themeOne.chapter.push(payload[1]);
+      });
+    },
   },
 });
 
-export const { setContentData, setAddContent, putContentData, deleteContent } =
-  contentSlice.actions;
+export const {
+  setContentData,
+  setAddContent,
+  putContentData,
+  deleteContent,
+  setAddChapter,
+} = contentSlice.actions;
 export default contentSlice.reducer;
