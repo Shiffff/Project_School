@@ -20,6 +20,7 @@ const themeSchema = mongoose.Schema(
                 lessonTitle: { type: String, trim: true, maxlength: 500 },
                 lessondescription: { type: String, trim: true, maxlength: 500 },
                 content: { type: String },
+                contentPic: { type: String },
                 timestamp: Number,
               },
             ],

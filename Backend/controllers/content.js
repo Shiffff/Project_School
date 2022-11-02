@@ -94,15 +94,15 @@ exports.createLessons = (req, res, next) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
     );
-
     if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
     chapterOne.lessons.push({
       userLessonId: req.body.userLessonId,
       lessonTitle: req.body.lessonTitle,
       lessondescription: req.body.lessondescription,
-      content: req.body.content,
+      content: `${req.protocol}://${req.get("host")}/content/${
+        req.file.filename
+      }`,
     });
-
     return data.save((err) => {
       if (!err) return res.status(200).send(data);
       return res.status(500).send(err);

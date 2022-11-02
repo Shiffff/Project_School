@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { contentService } from "../../services/content.service";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setContentData } from "../../feature/content.slice";
+import { contentService } from "../../services/content.service";
 
-const AddChapter = ({ theme }) => {
+const AddLesson = ({ theme, chapter }) => {
   const [IsAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.user);
@@ -17,20 +17,21 @@ const AddChapter = ({ theme }) => {
     checkAdmin();
   }, [userData]);
 
-  const [newChapter, setnewChapter] = useState({
-    userChapterId: userData._id,
-    chapterTitle: "",
-    chapterdescription: "",
+  const [newLesson, setnewLesson] = useState({
+    userLessonId: userData._id,
+    chapterId: chapter._id,
+    lessonTitle: "",
+    lessondescription: "",
   });
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setnewChapter({ ...newChapter, [name]: value });
+    setnewLesson({ ...newLesson, [name]: value });
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    contentService.createChapter(theme._id, newChapter).then((res) => {
+    contentService.createLesson(theme._id, newLesson).then((res) => {
       contentService
         .getTheme()
         .then((res) => {
@@ -41,31 +42,31 @@ const AddChapter = ({ theme }) => {
   };
 
   return (
-    <div className="addChapter_container">
-      <div className="newChapterForm">
+    <div className="addLesson_container">
+      <div className="newLessonForm">
         {IsAdmin && (
           <form onSubmit={(e) => handleSubmit(e)}>
-            <label htmlFor="chapterTitle">Titre du chapitre</label>
+            <label htmlFor="lessonTitle">Titre de la lesson</label>
             <br />
             <input
               type="text"
-              name="chapterTitle"
-              id="chapterTitle"
-              value={newChapter.chapterTitle}
+              name="lessonTitle"
+              id="lessonTitle"
+              value={newLesson.lessonTitle}
               onChange={(e) => handleChange(e)}
             />
             <br />
-            <label htmlFor="chapterdescription">description du chapitre</label>
+            <label htmlFor="lessondescription">description de la lesson</label>
             <br />
             <input
               type="text"
-              name="chapterdescription"
-              id="chapterdescription"
-              value={newChapter.chapterdescription}
+              name="lessondescription"
+              id="lessondescription"
+              value={newLesson.lessondescription}
               onChange={(e) => handleChange(e)}
             />
             <br />
-            <input type="submit" className="submitNewChapter" value="Valider" />
+            <input type="submit" className="submitNewLesson" value="Valider" />
           </form>
         )}
       </div>
@@ -73,4 +74,4 @@ const AddChapter = ({ theme }) => {
   );
 };
 
-export default AddChapter;
+export default AddLesson;

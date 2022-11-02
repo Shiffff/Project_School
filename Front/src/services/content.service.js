@@ -13,13 +13,24 @@ let putTheme = (_id, newTheme) => {
 let deleteTheme = (_id) => {
   return Axios.delete(`/content/theme/${_id}`);
 };
-let createChapter = (_id, theme) => {
-  return Axios.post(`/content/chapter/${_id}`, theme);
+let createChapter = (_id, chapter) => {
+  return Axios.post(`/content/chapter/${_id}`, chapter);
 };
-let putChapter = (_id, theme) => {
-  return Axios.put(`/content/chapter/${_id}`, theme);
+let putChapter = (_id, chapter) => {
+  return Axios.put(`/content/chapter/${_id}`, chapter);
 };
-
+let deleteChapterService = (_id, chapter) => {
+  return Axios.put(`/content/deletechapter/${_id}`, chapter);
+};
+let createLesson = (_id, lesson) => {
+  return Axios.post(`/content/lessons/${_id}`, lesson);
+};
+let putLesson = (_id, chapter) => {
+  return Axios.put(`/content/lessons/${_id}`, chapter);
+};
+let deleteLessonService = (_id, lesson) => {
+  return Axios.put(`/content/deletelessons/${_id}`, lesson);
+};
 export const contentService = {
   createTheme,
   getTheme,
@@ -27,4 +38,8 @@ export const contentService = {
   putTheme,
   createChapter,
   putChapter,
+  deleteChapterService,
+  createLesson,
+  putLesson,
+  deleteLessonService,
 };

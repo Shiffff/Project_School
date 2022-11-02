@@ -4,6 +4,7 @@ var cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const contentRoutes = require("./routes/content");
+const path = require("path"); // gére les chemins d'accées au fichier
 
 mongoose
   .connect(
@@ -15,6 +16,7 @@ mongoose
 
 app.use(express.json());
 app.use(cors());
+app.use("/content", express.static(path.join(__dirname, "content"))); // route static pour les images DL
 app.use("/api/user", userRoutes);
 app.use("/api/content", contentRoutes);
 

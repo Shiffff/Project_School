@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { contentService } from "../../services/content.service";
 import { useSelector } from "react-redux";
-import { setAddContent } from "../../feature/content.slice";
 import { useDispatch } from "react-redux";
 import { setContentData } from "../../feature/content.slice";
 

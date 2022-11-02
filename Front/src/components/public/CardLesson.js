@@ -1,36 +1,38 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import DeleteChapter from "./DeleteChapter";
 import { contentService } from "../../services/content.service";
-import { putChapter } from "../../feature/content.slice";
-import ShowLessonCard from "./ShowLessonCard";
+import { putLesson } from "../../feature/content.slice";
+import DeleteLesson from "./DeleteLesson";
 
-const CardChapter = ({ chapter, theme }) => {
+const CardLesson = ({ theme, chapter, lesson }) => {
   const dispatch = useDispatch();
-  const [IsUpdated, setIsUpdated] = useState(false);
-  const [ShowLesson, setShowLesson] = useState(false);
+
   const userData = useSelector((state) => state.user.user);
+  const [IsUpdated, setIsUpdated] = useState(false);
+
   const [IsAdmin, setIsAdmin] = useState(false);
-  const [TextTitleUpdate, setTextTitleUpdate] = useState(chapter.chapterTitle);
+  const [TextTitleUpdate, setTextTitleUpdate] = useState(lesson.lessonTitle);
   const [TextDescriptionUpdate, setTextDescriptionUpdate] = useState(
-    chapter.chapterdescription
+    lesson.lessondescription
   );
 
   const updateItem = async () => {
     if (TextTitleUpdate || TextDescriptionUpdate) {
       const newDescription = {
         chapterId: chapter._id,
-        chapterTitle: TextTitleUpdate,
-        chapterdescription: TextDescriptionUpdate,
+        lessonId: lesson._id,
+        lessonTitle: TextTitleUpdate,
+        lessondescription: TextDescriptionUpdate,
       };
       contentService
-        .putChapter(theme._id, newDescription)
+        .putLesson(theme._id, newDescription)
         .then((res) => {
           console.log(res);
           dispatch(
-            putChapter([
+            putLesson([
               theme._id,
               chapter._id,
+              lesson._id,
               TextTitleUpdate,
               TextDescriptionUpdate,
             ])
@@ -50,28 +52,25 @@ const CardChapter = ({ chapter, theme }) => {
   }, [userData]);
 
   return (
-    <div className="CardThemeContainer">
-      <div
-        className="themeContainer"
-        onClick={() => setShowLesson(!ShowLesson)}
-      >
+    <div className="CardLessonsContainer">
+      <div className="lessonsContainer">
         <ul>
-          {IsUpdated === false && <p>{chapter.chapterTitle}</p>}
+          {IsUpdated === false && <p>{lesson.lessonTitle}</p>}
           {IsUpdated && (
             <div className="update-post">
               <textarea
-                defaultValue={chapter.chapterTitle}
+                defaultValue={lesson.lessonTitle}
                 onChange={(e) => setTextTitleUpdate(e.target.value)}
               />
               <div className="button-container"></div>
             </div>
           )}
 
-          {IsUpdated === false && <p>{chapter.chapterdescription}</p>}
+          {IsUpdated === false && <p>{lesson.lessondescription}</p>}
           {IsUpdated && (
             <div className="update-post">
               <textarea
-                defaultValue={chapter.chapterdescription}
+                defaultValue={lesson.lessondescription}
                 onChange={(e) => setTextDescriptionUpdate(e.target.value)}
               />
               <div className="button-container">
@@ -94,14 +93,13 @@ const CardChapter = ({ chapter, theme }) => {
               </div>
             </div>
           )}
-          {IsAdmin && <DeleteChapter chapter={chapter} theme={theme} />}
+          {IsAdmin && (
+            <DeleteLesson chapter={chapter} theme={theme} lesson={lesson} />
+          )}
         </ul>
-      </div>
-      <div className="chapterContainer">
-        {ShowLesson && <ShowLessonCard chapter={chapter} theme={theme} />}
       </div>
     </div>
   );
 };
 
-export default CardChapter;
+export default CardLesson;
