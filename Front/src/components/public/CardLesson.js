@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { contentService } from "../../services/content.service";
 import { putLesson } from "../../feature/content.slice";
 import DeleteLesson from "./DeleteLesson";
+import { useNavigate } from "react-router-dom";
 
 const CardLesson = ({ theme, chapter, lesson }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const userData = useSelector((state) => state.user.user);
@@ -53,7 +55,14 @@ const CardLesson = ({ theme, chapter, lesson }) => {
 
   return (
     <div className="CardLessonsContainer">
-      <div className="lessonsContainer">
+      <div
+        className="lessonsContainer"
+        onClick={() =>
+          navigate(`/cours/${lesson._id}`, {
+            state: { chapterId: chapter._id, themeId: theme._id },
+          })
+        }
+      >
         <ul>
           {IsUpdated === false && <p>{lesson.lessonTitle}</p>}
           {IsUpdated && (

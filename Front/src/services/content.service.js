@@ -31,6 +31,9 @@ let putLesson = (_id, chapter) => {
 let deleteLessonService = (_id, lesson) => {
   return Axios.put(`/content/deletelessons/${_id}`, lesson);
 };
+let getOneLessonService = (_id, lesson) => {
+  return Axios.get(`/content/lessons/${_id}`, lesson);
+};
 export const contentService = {
   createTheme,
   getTheme,
@@ -42,4 +45,5 @@ export const contentService = {
   createLesson,
   putLesson,
   deleteLessonService,
+  getOneLessonService,
 };

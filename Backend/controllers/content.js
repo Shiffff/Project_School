@@ -1,4 +1,5 @@
 const Content = require("../models/Content");
+const fs = require("fs");
 
 exports.createtheme = (req, res, next) => {
   if (req.auth.isAdmin === true) {
@@ -35,12 +36,6 @@ exports.deletetheme = (req, res, next) => {
       .then(() => res.status(200).json({ message: "theme supprimé !" }))
       .catch((error) => res.status(400).json({ error }));
   }
-};
-
-exports.getAllTheme = (req, res, next) => {
-  Content.find()
-    .then((content) => res.status(200).json(content))
-    .catch((error) => res.status(400).json({ error }));
 };
 
 exports.createChapter = (req, res, next) => {
@@ -99,8 +94,11 @@ exports.createLessons = (req, res, next) => {
       userLessonId: req.body.userLessonId,
       lessonTitle: req.body.lessonTitle,
       lessondescription: req.body.lessondescription,
+      picture: `${req.protocol}://${req.get("host")}/content/${
+        req.files.picture[0].filename
+      }`,
       content: `${req.protocol}://${req.get("host")}/content/${
-        req.file.filename
+        req.files.content[0].filename
       }`,
     });
     return data.save((err) => {
@@ -122,7 +120,8 @@ exports.modifyLessons = (req, res, next) => {
     if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
     lessonOne.lessonTitle = req.body.lessonTitle;
     lessonOne.lessondescription = req.body.lessondescription;
-    lessonOne.content = req.body.content;
+    lessonOne.picture = lessonOne.picture;
+    lessonOne.content = lessonOne.content;
 
     return data.save((err) => {
       if (!err) return res.status(200).send(data);
@@ -138,13 +137,50 @@ exports.deleteLessons = (req, res, next) => {
     );
 
     if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+
+    const lessonOne = chapterOne.lessons.find((lesson) =>
+      lesson._id.equals(req.body.lessonId)
+    );
+
+    const filenameContent = lessonOne.content.split("/content/")[1];
+    fs.unlink(`content/${filenameContent}`, () => {
+      console.log("contentSupr");
+    });
+    const filenamePicture = lessonOne.picture.split("/content/")[1];
+    fs.unlink(`content/${filenamePicture}`, () => {
+      console.log("pictureSupr");
+    });
+
     chapterOne.lessons.pull({
       _id: req.body.lessonId,
     });
-
     return data.save((err) => {
       if (!err) return res.status(200).send(data);
       return res.status(500).send(err);
     });
   });
+};
+
+exports.getOneLesson = (req, res, next) => {
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+    const lessonOne = chapterOne.lessons.find((lesson) =>
+      lesson._id.equals(req.body.lessonId)
+    );
+
+    if (!chapterOne) return res.status(404).send("Chapitre non trouvé");
+
+    return data.save((err) => {
+      if (!err) return res.status(200).send(lessonOne);
+      return res.status(500).send(err);
+    });
+  });
+};
+
+exports.getAllTheme = (req, res, next) => {
+  Content.find()
+    .then((content) => res.status(200).json(content))
+    .catch((error) => res.status(400).json({ error }));
 };

@@ -5,6 +5,10 @@ import { setContentData } from "../../feature/content.slice";
 import { contentService } from "../../services/content.service";
 
 const AddLesson = ({ theme, chapter }) => {
+  const [contentFile, setContentFile] = useState();
+
+  const [pictureFile, setPictureFile] = useState();
+
   const [IsAdmin, setIsAdmin] = useState(false);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.user);
@@ -29,9 +33,25 @@ const AddLesson = ({ theme, chapter }) => {
     setnewLesson({ ...newLesson, [name]: value });
   }
 
+  const handlePicture = (e) => {
+    setPictureFile(e.target.files[0]);
+  };
+
+  const handleContent = (e) => {
+    setContentFile(e.target.files[0]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    contentService.createLesson(theme._id, newLesson).then((res) => {
+    const formData = new FormData();
+    formData.append("userLessonId", userData._id);
+    formData.append("chapterId", chapter._id);
+    formData.append("lessonTitle", newLesson.lessonTitle);
+    formData.append("lessondescription", newLesson.lessondescription);
+    formData.append("picture", contentFile);
+    formData.append("content", pictureFile);
+
+    contentService.createLesson(theme._id, formData).then((res) => {
       contentService
         .getTheme()
         .then((res) => {
@@ -66,6 +86,26 @@ const AddLesson = ({ theme, chapter }) => {
               onChange={(e) => handleChange(e)}
             />
             <br />
+            <label htmlFor="picture">Image</label>
+
+            <input
+              onChange={(e) => handlePicture(e)}
+              id="picture"
+              name="picture"
+              accept=".jpeg, .png, .jpg, .pdf"
+              type="file"
+            />
+            <br />
+            <label htmlFor="content">Content</label>
+            <input
+              onChange={(e) => handleContent(e)}
+              id="content"
+              name="content"
+              accept=".jpeg, .png, .jpg, .pdf"
+              type="file"
+            />
+            <br />
+
             <input type="submit" className="submitNewLesson" value="Valider" />
           </form>
         )}

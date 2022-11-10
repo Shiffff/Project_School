@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contentCtrl = require("../controllers/content");
+const multer = require("../middleware/multer-config");
 const auth = require("../middleware/auth");
 
 router.post("/theme", auth, contentCtrl.createtheme);
@@ -12,8 +13,9 @@ router.post("/chapter/:id", contentCtrl.createChapter);
 router.put("/chapter/:id", contentCtrl.modifyChapter);
 router.put("/deletechapter/:id", contentCtrl.deleteChapter);
 
-router.post("/lessons/:id", contentCtrl.createLessons);
-router.put("/lessons/:id", contentCtrl.modifyLessons);
-router.put("/deletelessons/:id", contentCtrl.deleteLessons);
+router.post("/lessons/:id", multer, contentCtrl.createLessons);
+router.put("/lessons/:id", multer, contentCtrl.modifyLessons);
+router.put("/deletelessons/:id", multer, contentCtrl.deleteLessons);
+router.get("/lessons/:id", contentCtrl.getOneLesson);
 
 module.exports = router;
