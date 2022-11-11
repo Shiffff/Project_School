@@ -16,6 +16,6 @@ router.put("/deletechapter/:id", contentCtrl.deleteChapter);
 router.post("/lessons/:id", multer, contentCtrl.createLessons);
 router.put("/lessons/:id", multer, contentCtrl.modifyLessons);
 router.put("/deletelessons/:id", multer, contentCtrl.deleteLessons);
-router.get("/lessons/:id", contentCtrl.getOneLesson);
+router.put("/getlessons/:id", contentCtrl.getOneLesson);
 
 module.exports = router;

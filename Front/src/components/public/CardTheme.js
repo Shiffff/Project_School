@@ -45,6 +45,14 @@ const CardTheme = ({ theme }) => {
 
   return (
     <div className="CardThemeContainer">
+      {IsAdmin && (
+        <div className="button-container">
+          <div onClick={() => setIsUpdated(!IsUpdated)}>
+            <div>img modifié</div>
+          </div>
+        </div>
+      )}
+      {IsAdmin && <DeleteCard id={theme._id} />}
       <div
         className="themeContainer"
         onClick={() => setShowChapter(!ShowChapter)}
@@ -81,14 +89,6 @@ const CardTheme = ({ theme }) => {
               </div>
             </div>
           )}
-          {IsAdmin && (
-            <div className="button-container">
-              <div onClick={() => setIsUpdated(!IsUpdated)}>
-                <div>img modifié</div>
-              </div>
-            </div>
-          )}
-          {IsAdmin && <DeleteCard id={theme._id} />}
         </ul>
       </div>
       <div className="chapterContainer">

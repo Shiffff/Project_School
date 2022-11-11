@@ -74,6 +74,7 @@ const AddLesson = ({ theme, chapter }) => {
               id="lessonTitle"
               value={newLesson.lessonTitle}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <label htmlFor="lessondescription">description de la lesson</label>
@@ -84,6 +85,7 @@ const AddLesson = ({ theme, chapter }) => {
               id="lessondescription"
               value={newLesson.lessondescription}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <label htmlFor="picture">Image</label>
@@ -94,6 +96,7 @@ const AddLesson = ({ theme, chapter }) => {
               name="picture"
               accept=".jpeg, .png, .jpg, .pdf"
               type="file"
+              required
             />
             <br />
             <label htmlFor="content">Content</label>
@@ -103,6 +106,7 @@ const AddLesson = ({ theme, chapter }) => {
               name="content"
               accept=".jpeg, .png, .jpg, .pdf"
               type="file"
+              required
             />
             <br />
 

@@ -53,6 +53,7 @@ const AddChapter = ({ theme }) => {
               id="chapterTitle"
               value={newChapter.chapterTitle}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <label htmlFor="chapterdescription">description du chapitre</label>
@@ -63,6 +64,7 @@ const AddChapter = ({ theme }) => {
               id="chapterdescription"
               value={newChapter.chapterdescription}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <input type="submit" className="submitNewChapter" value="Valider" />

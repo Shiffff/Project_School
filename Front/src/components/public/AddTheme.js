@@ -58,6 +58,7 @@ const AddTheme = (props) => {
               id="themeTitle"
               value={newTheme.themeTitle}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <label htmlFor="themedescription">description du theme</label>
@@ -68,6 +69,7 @@ const AddTheme = (props) => {
               id="themedescription"
               value={newTheme.themedescription}
               onChange={(e) => handleChange(e)}
+              required
             />
             <br />
             <input type="submit" className="submitNewTheme" value="Valider" />

@@ -1,7 +1,7 @@
 const Content = require("../models/Content");
 const fs = require("fs");
 
-exports.createtheme = (req, res, next) => {
+exports.createtheme = (req, res) => {
   if (req.auth.isAdmin === true) {
     const newTheme = new Content({
       userThemeId: req.auth.userId,
@@ -16,7 +16,7 @@ exports.createtheme = (req, res, next) => {
   }
 };
 
-exports.modifytheme = (req, res, next) => {
+exports.modifytheme = (req, res) => {
   console.log(req.body);
   const theme = Content.findById(req.params.id);
   if (req.auth.isAdmin === true) {
@@ -30,15 +30,21 @@ exports.modifytheme = (req, res, next) => {
   }
 };
 
-exports.deletetheme = (req, res, next) => {
+exports.deletetheme = (req, res) => {
   if (req.auth.isAdmin === true) {
-    Content.deleteOne({ _id: req.params.id })
-      .then(() => res.status(200).json({ message: "theme supprimé !" }))
-      .catch((error) => res.status(400).json({ error }));
+    Content.findById(req.params.id, (err, data) => {
+      if (data.chapter[0]) {
+        return res.status(404).send("Veuillez d'abord supprimez les chapitre");
+      }
+
+      Content.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: "theme supprimé !" }))
+        .catch((error) => res.status(400).json({ error }));
+    });
   }
 };
 
-exports.createChapter = (req, res, next) => {
+exports.createChapter = (req, res) => {
   Content.updateOne(
     { _id: req.params.id },
     {
@@ -55,7 +61,7 @@ exports.createChapter = (req, res, next) => {
     .catch((error) => res.status(400).json({ error }));
 };
 
-exports.modifyChapter = (req, res, next) => {
+exports.modifyChapter = (req, res) => {
   Content.findById(req.params.id, (err, data) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
@@ -73,18 +79,25 @@ exports.modifyChapter = (req, res, next) => {
 };
 
 exports.deleteChapter = (req, res) => {
-  Content.findByIdAndUpdate(req.params.id, {
-    $pull: {
-      chapter: {
-        _id: req.body.chapterId,
+  Content.findById(req.params.id, (err, data) => {
+    const chapterOne = data.chapter.find((chapter) =>
+      chapter._id.equals(req.body.chapterId)
+    );
+    if (chapterOne.lessons[0]) {
+      return res.status(404).send("Veuillez d'abord supprimez les lessons");
+    }
+    Content.findByIdAndUpdate(req.params.id, {
+      $pull: {
+        chapter: {
+          _id: req.body.chapterId,
+        },
       },
-    },
-  })
-    .then((data) => res.send(data))
-    .catch((err) => res.status(500).send({ message: err }));
+    })
+      .then((data) => res.send(data))
+      .catch((err) => res.status(500).send({ message: err }));
+  });
 };
-
-exports.createLessons = (req, res, next) => {
+exports.createLessons = (req, res) => {
   Content.findById(req.params.id, (err, data) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
@@ -108,7 +121,7 @@ exports.createLessons = (req, res, next) => {
   });
 };
 
-exports.modifyLessons = (req, res, next) => {
+exports.modifyLessons = (req, res) => {
   Content.findById(req.params.id, (err, data) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
@@ -130,7 +143,7 @@ exports.modifyLessons = (req, res, next) => {
   });
 };
 
-exports.deleteLessons = (req, res, next) => {
+exports.deleteLessons = (req, res) => {
   Content.findById(req.params.id, (err, data) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
@@ -161,7 +174,8 @@ exports.deleteLessons = (req, res, next) => {
   });
 };
 
-exports.getOneLesson = (req, res, next) => {
+exports.getOneLesson = (req, res) => {
+  console.log(req.body);
   Content.findById(req.params.id, (err, data) => {
     const chapterOne = data.chapter.find((chapter) =>
       chapter._id.equals(req.body.chapterId)
@@ -179,7 +193,7 @@ exports.getOneLesson = (req, res, next) => {
   });
 };
 
-exports.getAllTheme = (req, res, next) => {
+exports.getAllTheme = (req, res) => {
   Content.find()
     .then((content) => res.status(200).json(content))
     .catch((error) => res.status(400).json({ error }));

@@ -55,6 +55,17 @@ const CardLesson = ({ theme, chapter, lesson }) => {
 
   return (
     <div className="CardLessonsContainer">
+      {IsAdmin && (
+        <div className="button-container">
+          <div onClick={() => setIsUpdated(!IsUpdated)}>
+            <div>img modifiée</div>
+          </div>
+        </div>
+      )}
+      {IsAdmin && (
+        <DeleteLesson chapter={chapter} theme={theme} lesson={lesson} />
+      )}
+
       <div
         className="lessonsContainer"
         onClick={() =>
@@ -94,16 +105,6 @@ const CardLesson = ({ theme, chapter, lesson }) => {
                 </button>
               </div>
             </div>
-          )}
-          {IsAdmin && (
-            <div className="button-container">
-              <div onClick={() => setIsUpdated(!IsUpdated)}>
-                <div>img modifié</div>
-              </div>
-            </div>
-          )}
-          {IsAdmin && (
-            <DeleteLesson chapter={chapter} theme={theme} lesson={lesson} />
           )}
         </ul>
       </div>
