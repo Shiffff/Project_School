@@ -1,7 +1,76 @@
+@import "../color.scss";
+
 .themeContainer ul {
   display: flex;
   justify-content: space-around;
-  background-color: darkgray;
   padding: 20px;
-  margin-bottom: 15px;
+}
+.ThemeElementContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+  margin-top: 50px;
+}
+.ChapterElementContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 70px;
+}
+
+.themeline {
+  width: 90%;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 20px;
+}
+.chapterline {
+  width: 70%;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.newThemeForm form {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.newChapterForm form {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.modifyAndDeleteTheme {
+  display: flex;
+  justify-content: flex-end;
+}
+.selectClass6° {
+  background-color: $color6;
+}
+.selectClass5° {
+  background-color: $color5;
+}
+.selectClass4° {
+  background-color: $color4;
+}
+.selectClass3° {
+  background-color: $color3;
+}
+.selectClass2° {
+  background-color: $color2;
+}
+.selectClass1°es {
+  background-color: $color1es;
+}
+.selectClass1°spe {
+  background-color: $color1spe;
+}
+.selectClassT°es {
+  background-color: $colorTes;
+}
+.selectClassTSPE {
+  background-color: $colorTspe;
 }

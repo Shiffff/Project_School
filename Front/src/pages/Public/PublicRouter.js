@@ -13,7 +13,6 @@ import TES from "./TES";
 import Troisieme from "./Troisieme";
 import TSPE from "./TSPE";
 import Error from "../../utils/Error";
-import Content from "./Content";
 
 const PublicRouter = () => {
   return (
@@ -31,7 +30,6 @@ const PublicRouter = () => {
           <Route path="/premiereSPE" element={<PremiereSPE />} />
           <Route path="/tes" element={<TES />} />
           <Route path="/tspe" element={<TSPE />} />
-          <Route path="/cours/:id" element={<Content />} />
 
           <Route path="*" element={<Error />} />
         </Route>

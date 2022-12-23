@@ -23,7 +23,7 @@ const DeleteLesson = ({ chapter, theme, lesson }) => {
         handleDeleteLesson();
       }}
     >
-      delete3
+      <img className="deletecon" src="../trash.svg" alt="pic"></img>
     </div>
   );
 };

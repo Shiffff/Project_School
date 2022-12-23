@@ -17,7 +17,7 @@ const CardLesson = ({ theme, chapter, lesson }) => {
   const [TextDescriptionUpdate, setTextDescriptionUpdate] = useState(
     lesson.lessondescription
   );
-
+  console.log(lesson);
   const updateItem = async () => {
     if (TextTitleUpdate || TextDescriptionUpdate) {
       const newDescription = {
@@ -55,58 +55,60 @@ const CardLesson = ({ theme, chapter, lesson }) => {
 
   return (
     <div className="CardLessonsContainer">
-      {IsAdmin && (
-        <div className="button-container">
-          <div onClick={() => setIsUpdated(!IsUpdated)}>
-            <div>img modifiée</div>
-          </div>
-        </div>
-      )}
-      {IsAdmin && (
-        <DeleteLesson chapter={chapter} theme={theme} lesson={lesson} />
-      )}
-
-      <div
-        className="lessonsContainer"
-        onClick={() =>
-          navigate(`/cours/${lesson._id}`, {
-            state: { chapterId: chapter._id, themeId: theme._id },
-          })
-        }
-      >
-        <ul>
-          {IsUpdated === false && <p>{lesson.lessonTitle}</p>}
-          {IsUpdated && (
-            <div className="update-post">
-              <textarea
-                defaultValue={lesson.lessonTitle}
-                onChange={(e) => setTextTitleUpdate(e.target.value)}
-              />
-              <div className="button-container"></div>
-            </div>
-          )}
-
-          {IsUpdated === false && <p>{lesson.lessondescription}</p>}
-          {IsUpdated && (
-            <div className="update-post">
-              <textarea
-                defaultValue={lesson.lessondescription}
-                onChange={(e) => setTextDescriptionUpdate(e.target.value)}
-              />
-              <div className="button-container">
-                <button
-                  className="btn"
-                  onClick={() => {
-                    updateItem();
-                    setIsUpdated(!IsUpdated);
-                  }}
-                >
-                  Modifier
-                </button>
+      <div className="CardLessonsEach">
+        <div className="modifyAndDeleteTheme">
+          {IsAdmin && (
+            <div className="button-container">
+              <div onClick={() => setIsUpdated(!IsUpdated)}>
+                <div>
+                  <img className="ModifyIcon" src="../edit.svg" alt="pic"></img>
+                </div>
               </div>
             </div>
           )}
-        </ul>
+          {IsAdmin && (
+            <DeleteLesson chapter={chapter} theme={theme} lesson={lesson} />
+          )}
+        </div>
+
+        <div
+          className="lessonsContainer"
+          onClick={() => window.open(lesson.content, "_blank")}
+        >
+          <ul>
+            <img className="lessonPic" src={lesson.picture} alt="pic"></img>
+
+            {IsUpdated === false && <p>{lesson.lessonTitle}</p>}
+            {IsUpdated && (
+              <div className="update-post">
+                <textarea
+                  defaultValue={lesson.lessonTitle}
+                  onChange={(e) => setTextTitleUpdate(e.target.value)}
+                />
+              </div>
+            )}
+            {IsUpdated === false && <p>{lesson.lessondescription}</p>}
+            {IsUpdated && (
+              <div className="update-post">
+                <textarea
+                  defaultValue={lesson.lessondescription}
+                  onChange={(e) => setTextDescriptionUpdate(e.target.value)}
+                />
+                <div className="button-container">
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      updateItem();
+                      setIsUpdated(!IsUpdated);
+                    }}
+                  >
+                    Modifier
+                  </button>
+                </div>
+              </div>
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );

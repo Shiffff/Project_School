@@ -1,7 +1,28 @@
 .lessonsContainer ul {
+}
+.CardLessonsContainer {
+  margin-right: 0px;
+  width: 210px;
   display: flex;
-  justify-content: space-around;
-  background-color: darkgray;
-  padding: 20px;
-  margin-bottom: 15px;
+}
+.lessonPic {
+  width: 170px;
+  height: 170px;
+  border-radius: 20px;
+}
+.lessonsContainer {
+}
+.CardLessonsEach {
+}
+.eachCard {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.newLessonForm form {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
 }

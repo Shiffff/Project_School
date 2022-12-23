@@ -22,7 +22,7 @@ const DeleteCard = (props) => {
         deletetheme();
       }}
     >
-      delete1
+      <img className="deletecon" src="../trash.svg" alt="pic"></img>
     </div>
   );
 };

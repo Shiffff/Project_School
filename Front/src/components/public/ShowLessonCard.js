@@ -8,17 +8,19 @@ const ShowLessonCard = ({ theme, chapter }) => {
     <div className="ShowTheme">
       <ul>
         <AddLesson theme={theme} chapter={chapter} />
-        {!isEmpty(chapter.lessons[0]) &&
-          chapter.lessons.map((lesson) => {
-            return (
-              <CardLesson
-                theme={theme}
-                chapter={chapter}
-                lesson={lesson}
-                key={lesson._id}
-              />
-            );
-          })}
+        <div className="eachCard">
+          {!isEmpty(chapter.lessons[0]) &&
+            chapter.lessons.map((lesson) => {
+              return (
+                <CardLesson
+                  theme={theme}
+                  chapter={chapter}
+                  lesson={lesson}
+                  key={lesson._id}
+                />
+              );
+            })}
+        </div>
       </ul>
     </div>
   );

@@ -1,0 +1,29 @@
+.pdfViewer {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+.react-pdf__Page__textContent {
+  display: none;
+}
+
+.react-pdf__Page__annotations {
+  display: none;
+}
+.pdfNaviationButton {
+  background: url(../../../public/Arrow.svg) no-repeat;
+  width: 40px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+}
+.next {
+  transform: rotate(180deg);
+}
+.pdfBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}

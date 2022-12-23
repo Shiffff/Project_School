@@ -48,8 +48,8 @@ const AddLesson = ({ theme, chapter }) => {
     formData.append("chapterId", chapter._id);
     formData.append("lessonTitle", newLesson.lessonTitle);
     formData.append("lessondescription", newLesson.lessondescription);
-    formData.append("picture", contentFile);
-    formData.append("content", pictureFile);
+    formData.append("picture", pictureFile);
+    formData.append("content", contentFile);
 
     contentService.createLesson(theme._id, formData).then((res) => {
       contentService

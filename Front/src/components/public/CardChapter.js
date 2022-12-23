@@ -51,51 +51,57 @@ const CardChapter = ({ chapter, theme }) => {
 
   return (
     <div className="CardThemeContainer">
-      {IsAdmin && (
-        <div className="button-container">
-          <div onClick={() => setIsUpdated(!IsUpdated)}>
-            <div>img modifié</div>
-          </div>
-        </div>
-      )}
-      {IsAdmin && <DeleteChapter chapter={chapter} theme={theme} />}
-      <div
-        className="themeContainer"
-        onClick={() => setShowLesson(!ShowLesson)}
-      >
-        <ul>
-          {IsUpdated === false && <p>{chapter.chapterTitle}</p>}
-          {IsUpdated && (
-            <div className="update-post">
-              <textarea
-                defaultValue={chapter.chapterTitle}
-                onChange={(e) => setTextTitleUpdate(e.target.value)}
-              />
-              <div className="button-container"></div>
-            </div>
-          )}
-
-          {IsUpdated === false && <p>{chapter.chapterdescription}</p>}
-          {IsUpdated && (
-            <div className="update-post">
-              <textarea
-                defaultValue={chapter.chapterdescription}
-                onChange={(e) => setTextDescriptionUpdate(e.target.value)}
-              />
-              <div className="button-container">
-                <button
-                  className="btn"
-                  onClick={() => {
-                    updateItem();
-                    setIsUpdated(!IsUpdated);
-                  }}
-                >
-                  Modifier
-                </button>
+      <div className="modifyAndDeleteTheme">
+        {IsAdmin && (
+          <div className="button-container">
+            <div onClick={() => setIsUpdated(!IsUpdated)}>
+              <div>
+                <img className="ModifyIcon" src="../edit.svg" alt="pic"></img>
               </div>
             </div>
-          )}
-        </ul>
+          </div>
+        )}
+        {IsAdmin && <DeleteChapter chapter={chapter} theme={theme} />}
+      </div>
+      <div className="ChapterElementContainer">
+        <div
+          className={`themeContainer chapterline selectClass${theme.class}`}
+          onClick={() => setShowLesson(!ShowLesson)}
+        >
+          <ul>
+            {IsUpdated === false && <p>{chapter.chapterTitle}</p>}
+            {IsUpdated && (
+              <div className="update-post">
+                <textarea
+                  defaultValue={chapter.chapterTitle}
+                  onChange={(e) => setTextTitleUpdate(e.target.value)}
+                />
+                <div className="button-container"></div>
+              </div>
+            )}
+
+            {IsUpdated === false && <p>{chapter.chapterdescription}</p>}
+            {IsUpdated && (
+              <div className="update-post">
+                <textarea
+                  defaultValue={chapter.chapterdescription}
+                  onChange={(e) => setTextDescriptionUpdate(e.target.value)}
+                />
+                <div className="button-container">
+                  <button
+                    className="btn"
+                    onClick={() => {
+                      updateItem();
+                      setIsUpdated(!IsUpdated);
+                    }}
+                  >
+                    Modifier
+                  </button>
+                </div>
+              </div>
+            )}
+          </ul>
+        </div>
       </div>
       <div className="chapterContainer">
         {ShowLesson && <ShowLessonCard chapter={chapter} theme={theme} />}
