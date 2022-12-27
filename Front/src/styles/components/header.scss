@@ -5,6 +5,7 @@
   margin-top: 35px;
   display: flex;
   justify-content: center;
+  gap: 20px;
 
   @include lg {
     display: grid;
@@ -16,15 +17,20 @@
   }
 }
 
+.header a {
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+}
+
 .header li {
-  margin-right: 10px;
   width: 100px;
   height: 40px;
   border-radius: 10px;
   min-width: 90px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
   .activeLinkHome {
     border-radius: 10px;
@@ -41,6 +47,9 @@
     justify-content: center;
     color: white;
     font-weight: 500;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
   }
 }
 .iconeClass6 {

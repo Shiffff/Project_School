@@ -51,22 +51,14 @@ const CardChapter = ({ chapter, theme }) => {
 
   return (
     <div className="CardThemeContainer">
-      <div className="modifyAndDeleteTheme">
-        {IsAdmin && (
-          <div className="button-container">
-            <div onClick={() => setIsUpdated(!IsUpdated)}>
-              <div>
-                <img className="ModifyIcon" src="../edit.svg" alt="pic"></img>
-              </div>
-            </div>
-          </div>
-        )}
-        {IsAdmin && <DeleteChapter chapter={chapter} theme={theme} />}
-      </div>
       <div className="ChapterElementContainer">
         <div
           className={`themeContainer chapterline selectClass${theme.class}`}
-          onClick={() => setShowLesson(!ShowLesson)}
+          onClick={() => {
+            if (IsUpdated === false) {
+              setShowLesson(!ShowLesson);
+            }
+          }}
         >
           <ul>
             {IsUpdated === false && <p>{chapter.chapterTitle}</p>}
@@ -100,6 +92,22 @@ const CardChapter = ({ chapter, theme }) => {
                 </div>
               </div>
             )}
+            <div className="modifyAndDeleteTheme">
+              {IsAdmin && (
+                <div className="button-container">
+                  <div onClick={() => setIsUpdated(!IsUpdated)}>
+                    <div>
+                      <img
+                        className="ModifyIcon"
+                        src="../edit.svg"
+                        alt="pic"
+                      ></img>
+                    </div>
+                  </div>
+                </div>
+              )}
+              {IsAdmin && <DeleteChapter chapter={chapter} theme={theme} />}
+            </div>
           </ul>
         </div>
       </div>

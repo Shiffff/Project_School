@@ -9,12 +9,13 @@
   display: flex;
   justify-content: center;
   margin-bottom: 70px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .ChapterElementContainer {
   display: flex;
   justify-content: center;
   margin-bottom: 70px;
+  margin-top: 20px;
 }
 
 .themeline {
@@ -45,7 +46,15 @@
 
 .modifyAndDeleteTheme {
   display: flex;
-  justify-content: flex-end;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 0px;
+  right: 35px;
+}
+.modifyAndDeleteTheme img {
+  width: 20px;
+  height: 20px;
 }
 .selectClass6° {
   background-color: $color6;
@@ -73,4 +82,16 @@
 }
 .selectClassTSPE {
   background-color: $colorTspe;
+}
+
+.themeline {
+  position: relative;
+}
+.chapterline {
+  position: relative;
+}
+.contentContainer button {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
 }

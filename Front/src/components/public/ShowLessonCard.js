@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import AddLesson from "./AddLesson";
 import CardLesson from "./CardLesson";
 import { isEmpty } from "../../utils/utils";
 
 const ShowLessonCard = ({ theme, chapter }) => {
+  const userData = useSelector((state) => state.user.user);
+
+  const [ShowAddTheme, setShowAddTheme] = useState(false);
+  const [IsAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const checkAdmin = () => {
+      if (userData.isAdmin === true) {
+        setIsAdmin(true);
+      }
+    };
+    checkAdmin();
+  }, [userData]);
+
   return (
     <div className="ShowTheme">
       <ul>
-        <AddLesson theme={theme} chapter={chapter} />
+        {IsAdmin && (
+          <button onClick={() => setShowAddTheme(!ShowAddTheme)}>
+            Ajouté une leçon
+          </button>
+        )}
+        {ShowAddTheme && <AddLesson theme={theme} chapter={chapter} />}
         <div className="eachCard">
           {!isEmpty(chapter.lessons[0]) &&
             chapter.lessons.map((lesson) => {

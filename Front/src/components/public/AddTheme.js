@@ -6,6 +6,8 @@ import { setContentData } from "../../feature/content.slice";
 
 const AddTheme = (props) => {
   const [IsAdmin, setIsAdmin] = useState(false);
+  const [ShowAddTheme, setShowAddTheme] = useState(false);
+
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.user.user);
 
@@ -47,8 +49,13 @@ const AddTheme = (props) => {
 
   return (
     <div className="addTheme_container">
+      {IsAdmin && (
+        <button onClick={() => setShowAddTheme(!ShowAddTheme)}>
+          Ajouté un theme
+        </button>
+      )}
       <div className="newThemeForm">
-        {IsAdmin && (
+        {IsAdmin && ShowAddTheme && (
           <form onSubmit={(e) => handleSubmit(e)}>
             <label htmlFor="themeTitle">Titre du thème</label>
             <br />
