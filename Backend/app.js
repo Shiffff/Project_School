@@ -4,6 +4,8 @@ var cors = require("cors");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/user");
 const contentRoutes = require("./routes/content");
+const postRoutes = require("./routes/post"); // importation des routes users
+
 const path = require("path"); // gére les chemins d'accées au fichier
 
 mongoose
@@ -17,7 +19,9 @@ mongoose
 app.use(express.json());
 app.use(cors());
 app.use("/content", express.static(path.join(__dirname, "content"))); // route static pour les images DL
+app.use("/contentPost", express.static(path.join(__dirname, "contentPost")));
 app.use("/api/user", userRoutes);
+app.use("/api/post", postRoutes);
 app.use("/api/content", contentRoutes);
 
 module.exports = app;

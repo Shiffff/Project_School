@@ -9,11 +9,28 @@ export const isEmpty = (value) => {
 
 export const dateParser = (num) => {
   let options = {
+    weekday: "long",
     year: "numeric",
     month: "short",
+    day: "numeric",
   };
 
   let timestamp = Date.parse(num);
   let date = new Date(timestamp).toLocaleDateString("fr-FR", options);
+  return date.toString();
+};
+
+export const timestampParser = (num) => {
+  let options = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  };
+
+  let date = new Date(num).toLocaleDateString("fr-FR", options);
   return date.toString();
 };
