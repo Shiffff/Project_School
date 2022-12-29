@@ -1,0 +1,25 @@
+.activeLinkRight {
+  background-color: rgb(183, 214, 214);
+}
+.HearderAllRight {
+  position: fixed;
+  top: 50%;
+  right: 60px;
+  transform: translateY(-50%);
+}
+.firstPart {
+  padding: 10px;
+  border: 2px solid black;
+}
+.secondPart {
+  padding: 10px;
+
+  border: 2px solid black;
+  margin-top: 5px;
+}
+.LinkRight {
+  border: 1px solid black;
+  padding: 3px;
+  width: 200px;
+  text-align: center;
+}

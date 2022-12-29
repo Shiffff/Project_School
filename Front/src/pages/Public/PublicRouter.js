@@ -13,6 +13,12 @@ import TES from "./TES";
 import Troisieme from "./Troisieme";
 import TSPE from "./TSPE";
 import Error from "../../utils/Error";
+import Bac from "./Bac";
+import BoiteOutils from "./BoiteOutils";
+import Brevet from "./Brevet";
+import Orientation from "./Orientation";
+import Presentation from "./Presentation";
+import SocialLink from "./SocialLink";
 
 const PublicRouter = () => {
   return (
@@ -30,6 +36,12 @@ const PublicRouter = () => {
           <Route path="/premiereSPE" element={<PremiereSPE />} />
           <Route path="/tes" element={<TES />} />
           <Route path="/tspe" element={<TSPE />} />
+          <Route path="/direction-bac" element={<Bac />} />
+          <Route path="/direction-brevet" element={<Brevet />} />
+          <Route path="/orientation" element={<Orientation />} />
+          <Route path="/presentation" element={<Presentation />} />
+          <Route path="/social" element={<SocialLink />} />
+          <Route path="/boite-outils" element={<BoiteOutils />} />
 
           <Route path="*" element={<Error />} />
         </Route>
