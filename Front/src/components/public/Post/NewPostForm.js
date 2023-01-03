@@ -19,7 +19,7 @@ const NewPostForm = () => {
       if (file) data.append("image", file);
       postService.createPost(userData._id, data).then((res) => {
         postService
-          .getAllPost()
+          .getAllPost(5)
           .then((res) => {
             dispatch(setPostData(res.data));
             cancelPost();

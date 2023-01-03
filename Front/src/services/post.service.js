@@ -3,8 +3,8 @@ import Axios from "./caller.service";
 let createPost = (userID, post) => {
   return Axios.post(`/post/post/${userID}`, post);
 };
-let getAllPost = () => {
-  return Axios.get(`/post/posts`);
+let getAllPost = (num) => {
+  return Axios.get(`/post/posts/${num}`);
 };
 let deletePost = (postID) => {
   return Axios.delete(`/post/post/${postID}`);

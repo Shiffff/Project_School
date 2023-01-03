@@ -10,7 +10,7 @@ import { postService } from "../../../services/post.service";
 const Thread = () => {
   const dispatch = useDispatch();
   const [loadPost, setLoadPost] = useState(true);
-  const [count, setCount] = useState(5);
+  const [count, setCount] = useState(10);
   const postData = useSelector((state) => state.post.post);
 
   const loadMore = () => {
@@ -25,9 +25,9 @@ const Thread = () => {
   useEffect(() => {
     if (loadPost) {
       postService
-        .getAllPost()
+        .getAllPost(count)
         .then((res) => {
-          const array = res.data.slice(0, count);
+          const array = res.data;
           dispatch(setPostData(array));
           setLoadPost(false);
           setCount(count + 5);

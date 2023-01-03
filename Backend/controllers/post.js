@@ -2,7 +2,11 @@ const Post = require("../models/Post"); // importation du model (email + passwor
 const fs = require("fs");
 
 exports.getAllPost = (req, res, next) => {
+  const number = req.params.num;
   Post.find()
+
+    .sort({ createdAt: "desc" })
+    .limit(number)
     .then((posts) => res.status(200).json(posts))
     .catch((error) => res.status(400).json({ error }));
 };
